@@ -1,5 +1,29 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapFromTo = () => {
-  // TODO: Implement the gsap.fromTo() method
+  useGSAP(() => {
+    const redBox = document.getElementById("red-box");
+
+    // Animate the green box from a new state to its current state
+    gsap.fromTo(
+      redBox,
+      {
+        x: 0,
+        rotate: 0,
+        borderRadius: "0%",
+      },
+      {
+        duration: 2,
+        x: 250,
+        rotate: 360,
+        borderRadius: "100%",
+        opacity: 0.5,
+        ease: "bounce.out",
+        repeat: -1, // Repeat indefinitely
+      }
+    );
+  }, []);
 
   return (
     <main>
@@ -25,8 +49,7 @@ const GsapFromTo = () => {
         <a
           href="https://greensock.com/docs/v3/GSAP/gsap.fromTo()"
           target="_blank"
-          rel="noreferrer noopener nofollow"
-        >
+          rel="noreferrer noopener nofollow">
           gsap.fromTo()
         </a>{" "}
         method.

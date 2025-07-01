@@ -1,5 +1,29 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapStagger = () => {
-  // TODO: Implement the gsap.stagger() method
+  useGSAP(() => {
+    // Select all elements with the class 'stagger-box'
+    const staggerBoxes = document.querySelectorAll(".stagger-box");
+
+    // Animate the staggered boxes with a stagger effect
+    gsap.to(staggerBoxes, {
+      duration: 0.65,
+      opacity: 0,
+      y: 100,
+      ease: "power1.inOut",
+      // stagger: 0.2, // Stagger delay of 0.2 seconds
+      stagger: {
+        amount: 1, // Total stagger time for all elements
+        grid: [2, 1], // Grid layout for staggering
+        axis: "y", // Stagger along the y-axis
+        ease: "circ.inOut", // Easing function for the stagger effect
+        from: "center", // Start staggering from the mentioned element
+      },
+      repeat: -1, // Repeat indefinitely
+      // yoyo: true, // Reverse the animation on each repeat
+    });
+  }, []);
 
   return (
     <main>
@@ -23,8 +47,7 @@ const GsapStagger = () => {
         <a
           href="https://gsap.com/resources/getting-started/Staggers"
           target="_blank"
-          rel="noreferrer noopener nofollow"
-        >
+          rel="noreferrer noopener nofollow">
           Gsap Stagger
         </a>{" "}
         feature.
